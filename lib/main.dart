@@ -325,7 +325,7 @@ const String icd10DecisionTreeJson = '''
   {
     "id": "1",
     "isRoot": true,
-    "decision": "Does the patient have respiratory symptoms?",
+    "decision": "Does the oven heat?",
     "options": [
       {
         "id": "1.1",
@@ -342,12 +342,12 @@ const String icd10DecisionTreeJson = '''
   {
     "id": "2",
     "isLeaf": true,
-    "result": "J00-J99 (Respiratory Diseases)"
+    "result": "Something here"
   },
   {
     "id": "3",
-    "decision": "Does the patient have symptoms related to the digestive system?",
-    "information": "Abdominal pain or discomfort, Nausea and vomiting and more are possible symptoms.",
+    "decision": "Is the manual gas shut off vale in the correct position?",
+    "information": "Handle is in line with hte pipe and gas is on.",
     "options": [
       {
         "id": "3.1",
@@ -364,12 +364,12 @@ const String icd10DecisionTreeJson = '''
   {
     "id": "4",
     "isLeaf": true,
-    "result": "K00-K95 (Digestive Diseases)"
+    "result": "Try again. It should be working. If not describe another symptom"
   },
   {
     "id": "5",
-    "decision": "Does the patient have symptoms related to the nervous system?",
-    "hint": "Care about: Patient History, Medical History and more if necessary.",
+    "decision": "Change the switch to inline and try again?",
+    "hint": "See the diagram ...",
     "options": [
       {
         "id": "5.1",
@@ -386,7 +386,7 @@ const String icd10DecisionTreeJson = '''
   {
     "id": "6",
     "isLeaf": true,
-    "result": "G00-G99 (Nervous System Diseases)"
+    "result": "Heating should be on"
   },
   {
     "id": "7",
