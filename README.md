@@ -11,3 +11,8 @@ docker compose build - https://docs.docker.com/compose/compose-file/build/
 https://code.visualstudio.com/docs/devcontainers/containers
 
 
+Build conmtainer for flutter only
+ docker build -f Dockerfile-flutter.txt -t flutter .
+ docker run -v ${pwd}:/app -it flutter
+Note ${pwd} with curly brackets works. ) bracket doesnt
+

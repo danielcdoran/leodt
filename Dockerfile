@@ -17,7 +17,12 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 # Set flutter environment path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
+
+RUN mkdir /app/
+# COPY . /app/
+WORKDIR /app/
 # Run flutter doctor
+
 RUN flutter doctor
 
 # Enable flutter web
@@ -26,15 +31,13 @@ RUN flutter upgrade
 RUN flutter config --enable-web
 
 # Copy files to container and build
-RUN mkdir /app/
-# COPY . /app/
-WORKDIR /app/
-RUN flutter clean
-RUN flutter pub get
-RUN flutter build web -v
 
-# Record the exposed port
-EXPOSE 9000
+#RUN flutter clean
+#RUN flutter pub get
+# RUN flutter build web -v
+
+# # Record the exposed port
+# EXPOSE 9000
 
 # # make server startup script executable and start the web server
 # RUN ["chmod", "+x", "/app/server/server.sh"]
