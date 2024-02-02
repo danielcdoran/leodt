@@ -15,4 +15,5 @@ Build conmtainer for flutter only
  docker build -f Dockerfile-flutter.txt -t flutter .
  docker run -v ${pwd}:/app -it flutter
 Note ${pwd} with curly brackets works. ) bracket doesnt
+from here - https://hasnainm.hashnode.dev/flutter-web-app-to-a-docker-container
 
