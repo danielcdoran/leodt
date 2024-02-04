@@ -39,7 +39,7 @@ WORKDIR $APP
 # RUN flutter channel master
 # RUN flutter upgrade
 RUN flutter config --enable-web
-RUN flutter clean
+#RUN flutter clean
 RUN flutter pub get
 RUN flutter build web
 
