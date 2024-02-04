@@ -1,6 +1,6 @@
   services:
     frontend:
-      image: leodt
+      build: .
       volumes:
         - .:/app
       ports:
