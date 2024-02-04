@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '2LeoDT parser trial now',
+      title: '3LeoDT parser trial now',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -58,7 +58,7 @@ class _ICD10ClassificationState extends State<ICD10Classification> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('2LeoDT Parser trial Demo')),
+        appBar: AppBar(title: const Text('3LeoDT Parser trial Demo')),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),

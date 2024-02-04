@@ -36,8 +36,8 @@ WORKDIR $APP
 #RUN flutter doctor
 
 # Enable flutter web
-RUN flutter channel master
-RUN flutter upgrade
+# RUN flutter channel master
+# RUN flutter upgrade
 RUN flutter config --enable-web
 RUN flutter clean
 RUN flutter pub get
@@ -46,3 +46,4 @@ RUN flutter build web
 # Copy build\web to Nginx and start on port 80
 FROM nginx:1.21.1-alpine
 COPY --from=build-env /app/build/web /usr/share/nginx/html
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

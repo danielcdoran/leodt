@@ -1,0 +1,9 @@
+  services:
+    frontend:
+      build:
+        context: .
+      container_name: frontend
+      volumes:
+        - .:/app
+      ports:
+        - "80:80"
