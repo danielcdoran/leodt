@@ -1,8 +1,6 @@
   services:
     frontend:
-      build:
-        context: .
-      container_name: frontend
+      image: leodt
       volumes:
         - .:/app
       ports:

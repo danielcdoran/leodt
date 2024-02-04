@@ -58,7 +58,7 @@ class _ICD10ClassificationState extends State<ICD10Classification> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('LeoDT AppBar title')),
+        appBar: AppBar(title: const Text('LeoDT AppBar title2')),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
