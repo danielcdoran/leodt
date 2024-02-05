@@ -1,32 +1,34 @@
-# Creates basic Flutter compilation environment
-FROM debian:latest
+FROM debian:latest AS build-env
+   
+# Prerequisites
+RUN apt update && apt install -y curl git unzip xz-utils zip wget libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3
 
-# install all needed stuff
-RUN apt-get update
-RUN apt-get install -y curl git unzip
 RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3
-RUN apt-get clean
+   
+# Set up new user
+RUN useradd -ms /bin/bash developer
+USER developer
+WORKDIR /home/developer
+   
+# Prepare Android directories and system variables
+#RUN mkdir -p Android/sdk
+#ENV ANDROID_SDK_ROOT /home/developer/Android/sdk
+#RUN mkdir -p .android && touch .android/repositories.cfg
+   
+# Set up Android SDK
+#RUN wget -O sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+#RUN unzip sdk-tools.zip && rm sdk-tools.zip
+#RUN mv tools Android/sdk/tools
+#RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
+#RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
+#ENV PATH "$PATH:/home/developer/Android/sdk/platform-tools"
 
-# define variables
-ARG FLUTTER_SDK=/usr/local/flutter
-ARG FLUTTER_VERSION=3.16.5
-ARG APP=/app/
+# Download Flutter SDK
+RUN git clone https://github.com/flutter/flutter.git
+ENV PATH "$PATH:/home/developer/flutter/bin"
+   
+# Run basic check to download Dark SDK
+RUN mkdir /home/developer/app
+WORKDIR /home/developer/app
 
-#clone flutter
-RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
-# change dir to current flutter folder and make a checkout to the specific version
-RUN cd $FLUTTER_SDK && git fetch && git checkout $FLUTTER_VERSION
-
-# setup the flutter path as an enviromental variable
-ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
-
-# Start to run Flutter commands
-# doctor to see if all was installes ok
-RUN flutter doctor -v
-
-# create folder to copy source code
-RUN mkdir $APP
-# copy source code to folder
-COPY . $APP
-# stup new folder as the working directory
-WORKDIR $APP
+RUN flutter doctor
