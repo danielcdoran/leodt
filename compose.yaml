@@ -4,4 +4,5 @@ services:
       context: ./
     ports:
       - "9000:80"
-    volumes: ./:/app
+    volumes: 
+      - .:/app
