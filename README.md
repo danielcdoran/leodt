@@ -1,3 +1,5 @@
+
+
 https://pub.dev/packages/leodt_parser/install
 
 docker run -d -p 81:80 --name httpd-container httpd
@@ -20,3 +22,5 @@ from here - https://hasnainm.hashnode.dev/flutter-web-app-to-a-docker-container
 on Ububnti/WSL
 docker build -t leodt .
 docker run -p 80:80 -v $(pwd):/app -it leodt
+docker compose up --build  rebuilds the image and creates the container
+

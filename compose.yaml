@@ -1,7 +1,6 @@
-  services:
-    frontend:
-      build: ./Dockerfile
-      volumes:
-        - .:/app
-      ports:
-        - "80:80"
+services:
+  frontend:
+    build:
+      context: ./
+    ports:
+      - "9000:80"

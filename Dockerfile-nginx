@@ -10,6 +10,7 @@ ARG FLUTTER_SDK=/usr/local/flutter
 ARG FLUTTER_VERSION=3.16.9
 ARG APP=/app/
 
+
 #clone flutter
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
 # change dir to current flutter folder and make a checkout to the specific version
