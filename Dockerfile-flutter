@@ -1,0 +1,50 @@
+# Install Operating system and dependencies to build and run Flutter
+# https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+FROM debian:latest AS build-env
+
+# install all needed stuff
+RUN apt-get update
+RUN apt-get install -y curl git unzip
+RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3 xz-utils
+RUN apt-get clean
+
+# define variables
+ARG FLUTTER_SDK=/home/developer/flutter
+ARG FLUTTER_VERSION=3.16.9
+ARG APP=/home/developer/app/
+ARG UID=1000
+ARG GID=1000
+
+ENV PUB_HOSTED_URL=https://pub.flutter-io.cn
+ENV FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+# Set up new user
+RUN groupadd -r developer -g $GID && useradd --no-log-init -r -g developer developer -u $UID
+
+USER developer
+
+WORKDIR /home/developer
+RUN curl -o flutter_linux_3.16.9-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.9-stable.tar.xz
+RUN tar -Jxvf flutter_linux_3.16.9-stable.tar.xz
+
+ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
+
+# stup new folder as the working directory
+WORKDIR $APP
+
+# #RUN flutter doctor
+
+# # Enable flutter web
+RUN flutter channel stable
+RUN flutter upgrade
+RUN flutter config --enable-web
+# #RUN flutter clean
+# RUN flutter pub get
+# RUN flutter build web
+
+# EXPOSE 9000
+
+# # make server startup script executable and start the web server
+# # RUN ["chmod", "+x", "/home/developer/app/server/server.sh"]
+
+# # ENTRYPOINT [ "/home/developer/app/server/server.sh"]
