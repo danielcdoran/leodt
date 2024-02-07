@@ -17,3 +17,6 @@ Build conmtainer for flutter only
 Note ${pwd} with curly brackets works. ) bracket doesnt
 from here - https://hasnainm.hashnode.dev/flutter-web-app-to-a-docker-container
 
+on Ububnti/WSL
+docker build -t leodt .
+docker run -p 80:80 -v $(pwd):/app -it leodt
