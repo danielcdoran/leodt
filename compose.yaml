@@ -1,7 +1,7 @@
   services:
     frontend:
-      build: .
+      build: ./Dockerfile
       volumes:
         - .:/app
       ports:
-        - "9000:9000"
+        - "80:80"
