@@ -2,7 +2,7 @@
 # https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 # This is the basic flutter environment for use in hte projects
 
-FROM flutter AS build-env
+FROM debian:latest AS build-env
 
 # define variables
 ARG FLUTTER_SDK=/home/developer/flutter
@@ -22,6 +22,9 @@ USER developer
 # stup new folder as the working directory
 WORKDIR $APP
 
+# RUN flutter channel stable
+# RUN flutter upgrade
+# RUN flutter config --enable-web
 # #RUN flutter clean
 # RUN flutter pub get
 # RUN flutter build web
